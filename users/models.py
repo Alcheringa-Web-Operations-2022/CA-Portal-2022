@@ -4,7 +4,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomAccountManager(BaseUserManager):
@@ -40,7 +39,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(max_length=150, unique=False, default="user")
     firstname = models.CharField(max_length=150, blank=True)
-    phone = PhoneNumberField(unique=False)
+    phone = models.IntegerField(unique=False, default=0)
     college = models.CharField(max_length=200, unique=False)
     department = models.CharField(max_length=200, unique=False)
     degree = models.CharField(max_length=200, unique=False)
@@ -51,7 +50,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
         'about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
-
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'

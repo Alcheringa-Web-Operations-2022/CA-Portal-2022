@@ -34,15 +34,10 @@ ALLOWED_HOSTS = [".run-ap-south1.goorm.io"]
 # Application definition
 
 INSTALLED_APPS = [
-    'phonenumber_field',
     'crispy_forms',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'dashboard.apps.DashboardConfig',
     'users.apps.UsersConfig',
     'allauth.socialaccount.providers.google',
-    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,7 +74,6 @@ TEMPLATES = [
     },
 ]
 
-SITE_ID = 1
 
 WSGI_APPLICATION = 'ca_portal.wsgi.application'
 

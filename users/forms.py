@@ -45,7 +45,7 @@ class UserRegisterForm(UserCreationForm):
     ]
     email = forms.EmailField(label="Email")
     firstname = forms.CharField(label="Full Name")
-    phone = PhoneNumberField(widget=forms.TextInput(attrs={'placeholder': 'e.g. +12125552368'}), label= "Phone number", required=False)
+    phone = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'e.g. +12125552368'}), label= "Phone number", required=False)
     college = forms.CharField(label="College name")
     degree = forms.CharField(label="Course", widget=forms.Select(choices=DEGREE))
     department = forms.CharField(label="Course Specialization",  widget=forms.Select(choices=DEPARTMENT))
