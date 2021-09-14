@@ -19,7 +19,7 @@ class CustomAccountManager(BaseUserManager):
         if other_fields.get('is_superuser') is not True:
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
-        return self.create_user(email,  firstname, password, **other_fields)
+        return self.create_user(email,  firstname, password, "email", **other_fields)
 
     def create_user(self, email, firstname, password, provider, **other_fields):
         if not email:
@@ -45,8 +45,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     graduation_year = models.CharField(max_length=200, unique=False)
     date_joined = models.DateTimeField(default=timezone.now)
     provider = models.CharField(max_length=200, unique=False, default="email")
-    about = models.TextField(_(
-        'about'), max_length=500, blank=True)
+    about = models.TextField(_('about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     objects = CustomAccountManager()
@@ -56,6 +55,8 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return str(self.id)
+
+# Username for admin is admin, superuser is superuser
 
 
 class Profile(models.Model):
