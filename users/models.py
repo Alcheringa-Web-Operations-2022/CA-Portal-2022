@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomAccountManager(BaseUserManager):
@@ -18,17 +19,14 @@ class CustomAccountManager(BaseUserManager):
         if other_fields.get('is_superuser') is not True:
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
-
         return self.create_user(email,  firstname, password, **other_fields)
 
-    def create_user(self, email, firstname, password, **other_fields):
-
+    def create_user(self, email, firstname, password, provider, **other_fields):
         if not email:
             raise ValueError(_('You must provide an email address'))
-
         email = self.normalize_email(email)
         user = self.model(email=email,
-                          firstname=firstname, ** other_fields)
+                          firstname=firstname, provider=provider, ** other_fields)
         user.set_password(password)
         user.save()
         return user
@@ -39,13 +37,14 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(max_length=150, unique=False, default="user")
     firstname = models.CharField(max_length=150, blank=True)
-    phone = models.IntegerField(unique=False, default=0)
+    phone = PhoneNumberField(unique=False, blank=True)
     college = models.CharField(max_length=200, unique=False)
     department = models.CharField(max_length=200, unique=False)
     degree = models.CharField(max_length=200, unique=False)
     course_duration = models.CharField(max_length=200, unique=False)
     graduation_year = models.CharField(max_length=200, unique=False)
     date_joined = models.DateTimeField(default=timezone.now)
+    provider = models.CharField(max_length=200, unique=False, default="email")
     about = models.TextField(_(
         'about'), max_length=500, blank=True)
     is_staff = models.BooleanField(default=False)
@@ -58,3 +57,9 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return str(self.id)
 
+
+class Profile(models.Model):
+    user = models.OneToOneField(NewUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.firstname} Profile'

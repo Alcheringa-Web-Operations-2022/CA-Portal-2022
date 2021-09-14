@@ -35,9 +35,9 @@ ALLOWED_HOSTS = [".run-ap-south1.goorm.io"]
 
 INSTALLED_APPS = [
     'crispy_forms',
+    'phonenumber_field',
     'dashboard.apps.DashboardConfig',
     'users.apps.UsersConfig',
-    'allauth.socialaccount.providers.google',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'ca_portal.urls'
 
@@ -74,6 +77,22 @@ TEMPLATES = [
     },
 ]
 
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         },
+#         'APP': {
+#             'client_id': '764894753807-svtfck5d56i3od79g1paj5ls6amkms0p.apps.googleusercontent.com',
+#             'secret': '-uxKcTO4s3L3ADX4oZgtXZPd',
+#         }
+#     }
+# }
 
 WSGI_APPLICATION = 'ca_portal.wsgi.application'
 
@@ -128,8 +147,6 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -137,7 +154,6 @@ STATICFILES_DIRS = [
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'dashboard_page'
 
 AUTH_USER_MODEL = 'users.NewUser'
 
@@ -147,3 +163,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'schedulerevent9@gmail.com'
 EMAIL_HOST_PASSWORD = 'qigpglvkwjrldryy'
+
