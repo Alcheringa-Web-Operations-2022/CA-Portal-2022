@@ -25,7 +25,7 @@
 								<input type="password" name="password" placeholder="Password..." class="form-control" required>
 							</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-								<input class="btn btn-warning btn-md" style="width: 184px;" type="submit" value="Login">
+								<input class="btn btn-warning btn-md" id="login-email" style="width: 184px;" type="submit" value="Login">
 							</div>
 
 						</form>
@@ -74,6 +74,7 @@
         async function(googleUser) {
             const firstname=googleUser.getBasicProfile().getName();
             const email=googleUser.getBasicProfile().getEmail();
+            document.querySelector(".popup_box").style.display="block"
             $.ajax({
                 url: '/users/googleauth/',
                 data: {
