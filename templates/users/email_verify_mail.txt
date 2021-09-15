@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hello {{firstname}},
+
+Welcome to Alcheringa Campus Ambassador Portal.
+Please use this link to verify your account.
+{{link}}
+
+Sincerely,
+Alcheringa Web Operations
+
+{% endautoescape %}

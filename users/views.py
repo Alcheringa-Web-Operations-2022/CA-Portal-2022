@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth import authenticate, login, logout
-from django.core.mail import EmailMessage
 from django.urls import reverse
 from .models import NewUser
 from django.utils.encoding import force_bytes, force_text
@@ -12,7 +11,12 @@ from .utils import token_generator
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth import get_user_model
+from django.template.loader import render_to_string
+from django.contrib.auth.tokens import default_token_generator
+from django.db.models.query_utils import Q
 
 def register(request):
     if request.user.is_authenticated:
@@ -27,15 +31,18 @@ def register(request):
                 domain = get_current_site(request).domain
                 link = reverse('activate', kwargs={
                                'uidb64': uidb64, 'token': token_generator.make_token(user)})
-                activate_url = 'https://'+domain+link
-                email_body = 'Hi '+request.POST.get('firstname') + \
-                    ' Please use this link to verify your account\n' + activate_url
-                email_subject = 'Activate your account'
-                email = EmailMessage(
-                    email_subject, email_body, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>',
-                    [request.POST.get('email')],
-                )
-                email.send(fail_silently=False)
+                subject = "Activate your account"
+                email_template_name = "users/email_verify_mail.txt"
+                firstname = request.POST.get('firstname')
+                c = {
+                    "firstname": firstname,
+                    "link": 'https://'+domain+link,
+                    }
+                email = render_to_string(email_template_name, c)
+                try:
+                    send_mail(subject, email, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>', [user.email], fail_silently=False)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
                 messages.success(request, ('Registration successful. Check your mail for the link to activate your account.'))
                 return redirect('login')
         else:
@@ -95,21 +102,19 @@ def googleauth(request):
                 domain = get_current_site(request).domain
                 link = reverse('activate', kwargs={
                                'uidb64': uidb64, 'token': token_generator.make_token(user)})
-                activate_url = 'https://'+domain+link
-                email_body = 'Hi '+firstname + \
-                    ' Please use this link to verify your account\n' + activate_url
-                email_subject = 'Activate your account'
-                email = EmailMessage(
-                    email_subject, email_body, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>',
-                    [email],
-                )
-                email.send(fail_silently=False)
+                subject = "Activate your account"
+                email_template_name = "users/email_verify_mail.txt"
+                firstname = request.POST.get('firstname')
+                c = {
+                    "firstname": firstname,
+                    "link": 'https://'+domain+link,
+                    }
+                email = render_to_string(email_template_name, c)
+                try:
+                    send_mail(subject, email, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>', [user.email], fail_silently=False)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
                 return HttpResponse('Signed in duccessfully')
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('login')
 
 
 class VerificationView(View):
@@ -132,18 +137,46 @@ class VerificationView(View):
 
 
 @login_required
-def Profile(request):
+def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid():
             u_form.save()
-            messages.success(request, f'Ypur Account has been Updated!')
+            messages.success(request, f'Your Profile has been updated!')
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
+    return render(request, 'users/profile.html', {'title': 'profile', 'u_form':u_form})
 
-    context = {
-        'u_form': u_form
-    }
-    return render(request, 'users/profile.html', context)
+
+def password_reset_request(request):
+    User = get_user_model()
+    if request.method == "POST":
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            data = password_reset_form.cleaned_data['email']
+            associated_users = User.objects.filter(Q(email=data, provider="email"))
+            if associated_users.exists():
+                for user in associated_users:
+                    subject = "Password Reset Requested"
+                    email_template_name = "users/password/password_reset_email.txt"
+                    c = {
+                        "email": user.email,
+                        'domain': get_current_site(request).domain,
+                        'site_name': 'Alcheringa Web Operations',
+                        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                        "user": user,
+                        'token': default_token_generator.make_token(user),
+                        'protocol': 'https',
+                    }
+                    email = render_to_string(email_template_name, c)
+                    try:
+                        send_mail(subject, email, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>', [user.email], fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+                    messages.success(request, ("Password reset mail sent successfully."))
+            else:
+                messages.error(request, ("Email not registered with us"))
+    password_reset_form = PasswordResetForm()
+    return render(request=request, template_name="users/password/password_reset.html", context={"password_reset_form":password_reset_form})
 

@@ -57,6 +57,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
         return str(self.id)
 
 # Username for admin is admin, superuser is superuser
+# firstname field stores the user full name not the username
 
 
 class Profile(models.Model):

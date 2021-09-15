@@ -2,6 +2,9 @@
 {%block title%}Alcheringa {%endblock%}
 {% block body %}
 <h1>Dashboard</h1>
-<a class="btn btn-primary  btn-sm btn-block" href="{% url 'logout' %}">Logout</a><br/>
-<a class="btn btn-primary  btn-sm btn-block" href="">Update profile</a>
+<a class="btn btn-primary  btn-sm btn-block" href="{% url 'logout' %}">Logout</a>
+<a class="btn btn-primary  btn-sm btn-block" href="{% url 'profile' %}">Update profile</a>
+{% if request.user.is_staff %}
+    <a class="btn btn-primary  btn-sm btn-block" href="admin">Admin</a>
+{% endif %}
 {%endblock%}
