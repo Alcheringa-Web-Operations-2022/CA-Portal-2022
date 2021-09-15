@@ -104,7 +104,7 @@ def googleauth(request):
                                'uidb64': uidb64, 'token': token_generator.make_token(user)})
                 subject = "Activate your account"
                 email_template_name = "users/email_verify_mail.txt"
-                firstname = request.POST.get('firstname')
+                firstname = request.GET.get('firstname')
                 c = {
                     "firstname": firstname,
                     "link": 'https://'+domain+link,
@@ -114,7 +114,7 @@ def googleauth(request):
                     send_mail(subject, email, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>', [user.email], fail_silently=False)
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')
-                return HttpResponse('Signed in duccessfully')
+                return HttpResponse('Registration successful. Check your mail for the link to update your account')
 
 
 class VerificationView(View):
