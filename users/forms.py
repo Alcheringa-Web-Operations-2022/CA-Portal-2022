@@ -115,7 +115,6 @@ class UserUpdateForm(forms.ModelForm):
         ('2026', '2026'),
         ('2027', '2027'),
     ]
-    email = forms.EmailField(label="Email")
     firstname = forms.CharField(label="Full Name")
     phone = PhoneNumberField(widget=forms.TextInput(), label= "Phone number (e.g. +12125552368)", required=False)
     college = forms.CharField(label="College name")
@@ -126,4 +125,4 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['firstname', 'email', 'phone', 'college', 'degree', 'department', 'course_duration' , 'graduation_year']
+        fields = ['firstname', 'phone', 'college', 'degree', 'department', 'course_duration' , 'graduation_year']

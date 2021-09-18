@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from .models import NewUser
 from django.utils.encoding import force_bytes, force_text
@@ -17,6 +17,7 @@ from django.contrib.auth import get_user_model
 from django.template.loader import render_to_string
 from django.contrib.auth.tokens import default_token_generator
 from django.db.models.query_utils import Q
+
 
 def register(request):
     if request.user.is_authenticated:
@@ -69,7 +70,7 @@ def loginPage(request):
                         print("errrr")
                         messages.error(request, 'Password is incorrect for the email address entered or the email is not activated') 
                 else:
-                    messages.error(request, 'This email is already authenticated with other provider')
+                    messages.error(request, 'This email is registered with another provider')
             else:
                 messages.error(request, 'Email is not registered')
         return render(request, 'users/login.html')
@@ -90,9 +91,10 @@ def googleauth(request):
                 user = authenticate(email=email, password=password)
                 if user is not None:
                     login(request, user)
-                    return HttpResponse('Signed in successfully') 
+                    return HttpResponse('Signed in successfully')
                 else:
-                    return HttpResponse('Email is already signed in with another provider or the email is not activated') 
+                    messages.error(request, 'Email is registered with another provider or the email is not activated')
+                    return HttpResponse('Email is registered with another provider or the email is not activated') 
             else:
                 myuser = NewUser.objects.create_user(email, firstname, password, "google")
                 myuser.save()
@@ -113,7 +115,7 @@ def googleauth(request):
                 try:
                     send_mail(subject, email, 'Alcheringa Campus Ambassador <schedulerevent9@gmail.com>', [user.email], fail_silently=False)
                 except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
+                    return HttpResponse('Invalid header found. Try again')
                 return HttpResponse('Registration successful. Check your mail for the link to update your account')
 
 
