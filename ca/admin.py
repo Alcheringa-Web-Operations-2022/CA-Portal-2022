@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import POC
 from django.http import HttpResponse
 import csv,io
+from ca.scores import POC_SCORE
 
 
 class POCAdmin(admin.ModelAdmin):
