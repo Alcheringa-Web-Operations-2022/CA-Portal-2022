@@ -27,7 +27,4 @@ class POC(models.Model):
 def __str__(self):
 		return f'{self.user.username}'
 
-class POCbulk(models.Model):
-  date_uploaded = models.DateTimeField(auto_now=True)
-  csv_file = models.FileField(upload_to='ca/poc-csv/')
 
