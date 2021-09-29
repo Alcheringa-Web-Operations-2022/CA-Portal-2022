@@ -21,6 +21,8 @@ class POC(models.Model):
     design = models.CharField(max_length=60)
     college = models.CharField(max_length=90)
     contact = models.CharField(max_length=13)
+    approval = models.BooleanField(default=False)
+    POCscore = models.IntegerField(default=0)
 
 def __str__(self):
 		return f'{self.user.username}'
