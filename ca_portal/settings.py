@@ -28,7 +28,7 @@ SECRET_KEY = '1x$%_n-6&+^ch=_6j)0kg+5*1p0=ri#*b)g1=ge8f8#-(8)9rb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".run-ap-south1.goorm.io"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ca'
 ]
 
 SITE_ID = 1
