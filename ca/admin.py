@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import POC
 from django.http import HttpResponse
+from auths.models import Profile
 import csv,io
 from ca.scores import POC_SCORE
 
@@ -39,7 +40,7 @@ def save_model(self, request, obj, form, change):
 				delta = 0
 
 			obj.POCscore+=delta
-			obj.user.ca_details.score+=delta
+			obj.user.profile.score+=delta
 			
 
 		super().save_model(request, obj, form, change)
@@ -47,9 +48,9 @@ def save_model(self, request, obj, form, change):
 
 	def delete_model(self,request,obj):
 		if obj.POCscore == POC_SCORE:
-			obj.user.ca_details.score-=POC_SCORE
+			obj.user.profile.score-=POC_SCORE
 
 		super().delete_model(request,obj)
-		obj.user.ca_details.save()
+		obj.user.profile.save()
 
 
