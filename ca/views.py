@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import csv,io
-from ca.models import POC,POC_form
+from ca.models import POC
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import JsonResponse
@@ -14,7 +14,7 @@ def poc(request):
     template="poc.html"
 
     prompt={
-        'order : Order of CSV should be Name,Designation,College,Contact '
+        'order : Order of CSV should be name, design, college, contact '
     }
 
     if request.method == "GET": 
