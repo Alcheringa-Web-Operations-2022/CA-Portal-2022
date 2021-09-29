@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 import csv,io
-from ca.models import POC
+from ca.models import POC,POC_form
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import JsonResponse
