@@ -40,10 +40,7 @@ def save_model(self, request, obj, form, change):
 
 			obj.POCscore+=delta
 			obj.user.ca_details.score+=delta
-			#TriWeekly score function
-			# if  delta > 0 or obj.triweeklyPOC!=0:
-			# 	obj.triweeklyPOC+=delta
-			# 	obj.user.ca_details.triweekly+=delta
+			
 
 		super().save_model(request, obj, form, change)
 		obj.user.ca_details.save()
@@ -52,9 +49,6 @@ def save_model(self, request, obj, form, change):
 		if obj.POCscore == POC_SCORE:
 			obj.user.ca_details.score-=POC_SCORE
 
-		#TriWeekly function
-		# if obj.triweeklyPOC == POC_SCORE:
-		# 	obj.user.ca_details.triweekly-=POC_SCORE
 		super().delete_model(request,obj)
 		obj.user.ca_details.save()
 
