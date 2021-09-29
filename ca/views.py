@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 @permission_required('admin_can_add_log_entry')
 
 def poc(request):
-    template="poc.html"
+    template="poc-csv.html"
 
     prompt={
         'order : Order of CSV should be name, design, college, contact '
