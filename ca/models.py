@@ -19,7 +19,7 @@ class POC(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=70)
     design = models.CharField(max_length=60)
-    college = models.CharField(max_length=90)
+    college = models.CharField(max_length=100)
     contact = models.CharField(max_length=13)
     approval = models.BooleanField(default=False)
     POCscore = models.IntegerField(default=0)
