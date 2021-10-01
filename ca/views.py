@@ -21,7 +21,7 @@ def register(request):
             return redirect('home')
     else:
         form = UserRegisterForm()
-    return render(request, 'CA/register.html',{'form':form})
+    return render(request, 'ca/register.html',{'form':form})
 
 
 
@@ -50,7 +50,7 @@ def home(request):
     contextTasks = {
         'tasks': Tasks.objects.all()
     }
-    return render(request,'CA/home.html', contextTasks)
+    return render(request,'ca/home.html', contextTasks)
     
 
 @login_required
@@ -58,14 +58,14 @@ def ideas(request):
     context = {
         'posts': Post.objects.all()
     }
-    return render(request,'CA/ideas.html',context)
+    return render(request,'ca/ideas.html',context)
 
 @login_required
 def poc(request):
     contextPOC = {
         'pocs': POC.objects.all()
     }
-    return render(request,'CA/poc.html',contextPOC)
+    return render(request,'ca/poc.html',contextPOC)
 
 @login_required
 def save_POC_from_csv(file_path):
