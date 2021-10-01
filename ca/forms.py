@@ -1,19 +1,16 @@
-from django import forms
-from .models import Profile
-from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
+from .models import POCBulkUpload
 
-User = get_user_module
-
-
-class POCForm(UserCreationForm):
-  
-    poc_name = forms.CharField(label="POC NAME")
-    poc_design = forms.CharField(label="POC DESIGNATION")
-    poc_college = forms.CharField(label="POC COLLEGE")
-    poc_phone = PhoneNumberField(label="POC CONTACT' required=False))
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
     
     class Meta:
         model = User
-        fields = ['poc_name','poc_design','poc_college,'poc_phone']
+        fields = ['username', 'email', 'password1', 'password2']
+
+class POCBulkUploadForm(forms.ModelForm):
+  class Meta:
+    model = POCBulkUpload
+    fields = ("csv_file",)
 
 
