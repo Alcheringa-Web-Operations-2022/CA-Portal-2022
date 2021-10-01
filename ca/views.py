@@ -67,63 +67,33 @@ def poc(request):
     }
     return render(request,'ca/poc.html',contextPOC)
 
-@login_required
-def save_POC_from_csv(file_path):
-    # do try catch accordingly
-    # open csv file, read lines
-    with open(file_path, 'r') as fp:
-        pocs = csv.reader(fp, delimiter=',')
-        row = 0
-        for poc in pocs:
-            if row==0:
-                headers = poc
-                row = row + 1
-            else:
-                # create a dictionary of student details
-                new_poc_details = {}
-                for i in range(len(headers)):
-                    new_poc_details[headers[i]] = poc[i]
-
-                # for the foreign key field current_class in Student you should get the object first and reassign the value to the key
-                new_poc_details['user'] = User.objects.get() # get the record according to value which is stored in db and csv file
-
-                # create an instance of Student model
-                new_poc = POC()
-                new_poc.__dict__.update(new_poc_details)
-                new_poc.save()
-                row = row + 1
-        fp.close()
-
-@login_required
-def uploadcsv(request):
-    if request.method == 'GET':
-        form = POCBulkUploadForm()
-        return render(request, 'ca/poc-csv.html', {'form':form})
-
-    try:
-        form = POCBulkUploadForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            csv_file = form.cleaned_data['csv_file']
-            if not csv_file.name.endswith('.csv'):
-                messages.error(request, 'File is not CSV type')
-                return redirect('ca/poc-csv.html')
-            # If file is too large
-            if csv_file.multiple_chunks():
-                messages.error(request, 'Uploaded file is too big (%.2f MB)' %(csv_file.size(1000*1000),))
-                return redirect('ca/poc-csv.html')
-
-            # save and upload file 
-            form.save()
-
-            # get the path of the file saved in the server
-            file_path = os.path.join(BASE_DIR, form.csv_file.url)
-
-            # a function to read the file contents and save the student details
-            save_POC_from_csv(file_path)
-            # do try catch if necessary
-
-    except:
-        logging.getLogger('error_logger').error('Unable to upload file. ' + repr())
-        messages.error(request, 'Unable to upload file. ' + repr())
-    return redirect('ca/poc-csv.html')
-    
+# one parameter named request
+def poccsv(request):
+    # declaring template
+    template = "poc-csv.html"
+    data = POC.objects.all()
+# prompt is a context variable that can have different values      depending on their context
+    prompt = {
+        'order': 'Order of the CSV should be name, designation,college, contact',
+        'profiles': data    
+              }
+    # GET request returns the value of the data with the specified key.
+    if request.method == "GET":
+        return render(request, template, prompt)
+    csv_file = request.FILES['file']
+    # let's check if it is a csv file
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request, 'THIS IS NOT A CSV FILE')
+    data_set = csv_file.read().decode('UTF-8')
+    # setup a stream which is when we loop through each line we are able to handle a data in a stream
+io_string = io.StringIO(data_set)
+next(io_string)
+for column in csv.reader(io_string, delimiter=',', quotechar="|"):
+    _, created = POC.objects.update_or_create(
+        name=column[0],
+        design=column[1],
+        college=column[2],
+        contact=column[3]
+    )
+context = {}
+return render(request, template, context)
