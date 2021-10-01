@@ -1,88 +1,129 @@
-from django.shortcuts import render, redirect
-import csv,io
-from ca.models import POC
-from django.contrib import messages 
-from django.contrib.auth.decorators import login_required,permission_required
-from django.http import JsonResponse
-from django.core.validators import RegexValidator, EmailValidator, URLValidator
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from CAPortal.settings import BASE_DIR
+from .forms import UserRegisterForm,POCBulkUploadForm
+from django.contrib.auth.decorators import login_required
+from django.views.generic import CreateView
+from .models import Post, Tasks, POC
+from django.contrib import messages
+import csv,io,os,logging
 
 
-@permission_required('admin_can_add_log_entry')
+# Create your views here.
 
-def poc(request):
-    template="poc-csv.html"
 
-    prompt={
-        'order : Order of CSV should be name, design, college, contact '
-    }
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            return redirect('home')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'CA/register.html',{'form':form})
 
-    if request.method == "GET": 
-        return render(request, template, prompt)
 
-    csv_file = request.FILES['file']
 
-    if not csv_file.name.endswith('.csv'):
-        messages.error(request,'this is not a CSV File')
 
-    data_set = csv.file.read().decode('UTF-8')
-    io_string = io.stringIO(data_set)
-    next(io_string)
-    for column in csv.reader(io_string,delimiter=',',quotechar="|") :
 
-        _, created = POC.objects.update_or_create(
-            name=column[0],
-            design=column[1],
-            college=column[2],
-            contact=column[3]
-        )
-        
-        context = {}
+class PostCreateView(CreateView):
+    model=Post
+    fields = ['subject', 'tell_us_your_idea']
 
-        return render(request,template,context)
-    
-  
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        messages.warning(self.request, f'Your idea has been submitted! Verification - Pending')
+        return super().form_valid(form)
+
+class POCCreateView(CreateView):
+    model=POC
+    fields = ['name', 'design','college','contact']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        messages.warning(self.request, f'Your POC has been submitted! Verification - Pending')
+        return super().form_valid(form)
+
 @login_required
-def poc_form(request):
-        if request.method == 'POST':
-                
-                data = {}
-                if request.POST['poc_name'] == '':
-                        data['poc_name'] = "Name Empty"
-                
-                if request.POST['poc_design'] == '':
-                        data['poc_design'] = "Designation Empty"
+def home(request):
+    contextTasks = {
+        'tasks': Tasks.objects.all()
+    }
+    return render(request,'CA/home.html', contextTasks)
+    
 
-                if request.POST['poc_college'] == '':
-                        data['poc_college'] = "College Empty"
+@login_required
+def ideas(request):
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request,'CA/ideas.html',context)
 
-                if request.POST['poc_phone'] == '':
-                                         data['poc_phone'] = "Phone Empty"
-                else:
-                        contact_number_validator = RegexValidator('^[0-9]{10}$')
-                        try:
-                                contact_number_validator(request.POST['poc_phone'])
-                        except Exception as e:
-                                data['poc_phone'] = "Phone REGEX"
-                if data:
-                        data['stat'] = "FAILURE"
-                        return JsonResponse(data)
-                else :
-                        poc_name = request.POST['poc_name']
-                        poc_design= request.POST['poc_design']
-                        poc_college = request.POST['poc_college']
-                        poc_phone = request.POST['poc_phone']
+@login_required
+def poc(request):
+    contextPOC = {
+        'pocs': POC.objects.all()
+    }
+    return render(request,'CA/poc.html',contextPOC)
 
-                        POC.objects.create(user=request.user,name=poc_name, design=poc_design,
-                                clg=poc_college, contact=poc_phone)
-                        data['stat'] = "Success"
+@login_required
+def save_POC_from_csv(file_path):
+    # do try catch accordingly
+    # open csv file, read lines
+    with open(file_path, 'r') as fp:
+        pocs = csv.reader(fp, delimiter=',')
+        row = 0
+        for poc in pocs:
+            if row==0:
+                headers = poc
+                row = row + 1
+            else:
+                # create a dictionary of student details
+                new_poc_details = {}
+                for i in range(len(headers)):
+                    new_poc_details[headers[i]] = poc[i]
 
-                        return JsonResponse(data)
-        else:
-                
-                poc_queries = POC.objects.filter(user=request.user)
-                context = {
-                        'more_active': True,
-                        'poc_queries': poc_queries
-                }
-                return render(request, 'ca/poc.html', context)
+                # for the foreign key field current_class in Student you should get the object first and reassign the value to the key
+                new_poc_details['user'] = User.objects.get() # get the record according to value which is stored in db and csv file
+
+                # create an instance of Student model
+                new_poc = POC()
+                new_poc.__dict__.update(new_poc_details)
+                new_poc.save()
+                row = row + 1
+        fp.close()
+
+@login_required
+def uploadcsv(request):
+    if request.method == 'GET':
+        form = POCBulkUploadForm()
+        return render(request, 'ca/poc-csv.html', {'form':form})
+
+    try:
+        form = POCBulkUploadForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            csv_file = form.cleaned_data['csv_file']
+            if not csv_file.name.endswith('.csv'):
+                messages.error(request, 'File is not CSV type')
+                return redirect('ca/poc-csv.html')
+            # If file is too large
+            if csv_file.multiple_chunks():
+                messages.error(request, 'Uploaded file is too big (%.2f MB)' %(csv_file.size(1000*1000),))
+                return redirect('ca/poc-csv.html')
+
+            # save and upload file 
+            form.save()
+
+            # get the path of the file saved in the server
+            file_path = os.path.join(BASE_DIR, form.csv_file.url)
+
+            # a function to read the file contents and save the student details
+            save_POC_from_csv(file_path)
+            # do try catch if necessary
+
+    except:
+        logging.getLogger('error_logger').error('Unable to upload file. ' + repr())
+        messages.error(request, 'Unable to upload file. ' + repr())
+    return redirect('ca/poc-csv.html')
+    
