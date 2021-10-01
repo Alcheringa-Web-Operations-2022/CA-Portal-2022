@@ -1,12 +1,13 @@
-from django.urls import path 
+from django.urls import path
 from . import views
-
-
-app_name = 'ca'
+from django.contrib.auth import views as auth_views
+from .views import PostCreateView,POCCreateView
 
 urlpatterns = [
-    path('poc-upload-csv/', views.poc, name='poc'),
-    path('poc-upload/', views.poc_form, name='poc_form'),
-    
-   
+    path('home/', views.home, name='home'),
+    path('ideas/', views.ideas, name='ideas'),
+    path('poc/', views.poc,name="poc"),
+    path('post/new/', PostCreateView.as_view(), name='post-create'),
+    path('poc/new/', POCCreateView.as_view(), name='poc-create'),
+    path('poc/new_csv/',views.uploadcsv, name='poc-csv-create'),
 ]
