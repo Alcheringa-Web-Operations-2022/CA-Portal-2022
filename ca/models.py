@@ -14,10 +14,6 @@ class POC(models.Model):
     def __str__(self):
 	    return f'{self.name}'
 
-class POCBulkUpload(models.Model):
-  csv_file = models.FileField(upload_to='CA/poc/')
-
-
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=200)
