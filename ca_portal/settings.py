@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'phonenumber_field',
     'dashboard.apps.DashboardConfig',
+    'home.apps.HomeConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',

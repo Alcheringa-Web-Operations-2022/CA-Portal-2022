@@ -12,6 +12,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('', include('dashboard.urls')),
     path('caportal/', include('ca.urls')),
+    path('', include('home.urls'))
     
 
    
