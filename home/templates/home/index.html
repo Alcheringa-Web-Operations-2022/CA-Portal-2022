@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'home/style.css' %}" type="text/css" />
+
     <title>Alcheringa CA Portal</title>
 </head>
 
@@ -17,16 +19,20 @@
     <section class="header">
         <nav>
             <a href="#"><img src="{% static 'home/img/logo.png' %}" alt="Logo" /></a>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Benefits</a></li>
-                    <li><a href="#">Responsibilities</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li id="join-button"><a href="#">Join Now</a></li>
+                    <li><a href="#" id="navlink1">About</a></li>
+                    <li><a href="#" id="navlink2">Benefits</a></li>
+                    <li><a href="#" id="navlink3">Responsibilities</a></li>
+                    <li><a href="#" id="navlink4">FAQs</a></li>
+                    <li><a href="#" id="navlink5">Login</a></li>
+                    <li id="join-button">
+                        <a href="#" id="join-button-text">Join Now</a>
+                    </li>
                 </ul>
             </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
         <div class="text-box">
             <h2>Alcheringa 2022</h2>
@@ -102,27 +108,27 @@
             <div class="join">
                 <div>
                     <img src="{% static 'home\img\perspaleta1_0008.png' %}" />
-                    <h2 style="color: #FFFFFF;">Complete Tasks</h2>
-                    <p style="color: #FFFFFF;">Platinum Certificate (Top 5 CAs)</p>
+                    <h2 style="color: #ffffff">Complete Tasks</h2>
+                    <p style="color: #ffffff">Platinum Certificate (Top 5 CAs)</p>
                 </div>
                 <div>
                     <img src="{% static 'home\img\perspaleta1_0031.png' %}" />
-                    <h2 style="color: #FFFFFF;">Share Posts</h2>
-                    <p style="color: #FFFFFF;">
+                    <h2 style="color: #ffffff">Share Posts</h2>
+                    <p style="color: #ffffff">
                         Feel the pride and honor of being<br />the leader of champions
                     </p>
                 </div>
                 <div>
                     <img src="{% static 'home\img\perspaleta1_0015.png' %}" />
-                    <h2 style="color: #FFFFFF;">Get Registrations</h2>
-                    <p style="color: #FFFFFF;">
+                    <h2 style="color: #ffffff">Get Registrations</h2>
+                    <p style="color: #ffffff">
                         Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
                     </p>
                 </div>
                 <div>
                     <img src="{% static 'home\img\perspaleta1_0037.png' %}" />
-                    <h2 style="color: #FFFFFF;">Suggest Ideas</h2>
-                    <p style="color: #FFFFFF;">
+                    <h2 style="color: #ffffff">Suggest Ideas</h2>
+                    <p style="color: #ffffff">
                         Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
                     </p>
                 </div>
@@ -154,6 +160,19 @@
             </div>
         </div>
     </section>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+    </script>
+    <script src="{% static 'home/main.js' %}"></script>
 </body>
 
 </html>
