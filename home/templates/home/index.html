@@ -1,178 +1,209 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{% static 'home/style.css' %}" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'home/style.css' %}"
+      type="text/css"
+    />
 
     <title>Alcheringa CA Portal</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <section class="header">
-        <nav>
-            <a href="#"><img src="{% static 'home/img/logo.png' %}" alt="Logo" /></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a href="#" id="navlink1">About</a></li>
-                    <li><a href="#" id="navlink2">Benefits</a></li>
-                    <li><a href="#" id="navlink3">Responsibilities</a></li>
-                    <li><a href="#" id="navlink4">FAQs</a></li>
-                    <li><a href="#" id="navlink5">Login</a></li>
-                    <li id="join-button">
-                        <a href="#" id="join-button-text">Join Now</a>
-                    </li>
-                </ul>
+      <nav>
+        <a href="#"
+          ><img src="{% static 'home/img/logo.png' %}" alt="Logo"
+        /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="#" id="navlink1">About</a></li>
+            <li><a href="#" id="navlink2">Benefits</a></li>
+            <li><a href="#" id="navlink3">Responsibilities</a></li>
+            <li><a href="#" id="navlink4">FAQs</a></li>
+            <li><a href="#" id="navlink5">Login</a></li>
+            <li id="join-button">
+              <a href="#" id="join-button-text">Join Now</a>
+            </li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <div class="text-box">
+        <h2>Alcheringa 2022</h2>
+        <h1>Campus Ambassador</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu
+          orci, scelerisque consequat aenean massa lobortis pretium.
+        </p>
+        <a href="#" class="hero-btn">Join Now</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="iframe-container">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/xSDlUEJ22vU"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="video-text">
+        <p>Aftermovie, Alcheringa 2020</p>
+      </div>
+    </section>
+
+    <section>
+      <div>
+        <p class="joining">Why should you join?</p>
+      </div>
+      <div class="join">
+        <div>
+          <img src="{% static 'home/img/perspaleta1_0016.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>Platinum Certificate (Top 5 CAs)</p>
+        </div>
+        <div>
+          <img src="{% static 'home\img\perspaleta1.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>Feel the pride and honor of being<br />the leader of champions</p>
+        </div>
+        <div>
+          <img src="{% static 'home\img\perspaleta1_0003.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>
+            Prizes worth 2.2 lakhs to be won<br />Certified Internships and
+            Workshops.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="blue">
+        <p id="res">What will be your responsibilities?</p>
+        <div id="man">
+          <img
+            src="{% static 'home\img\marketing-campaign-3025712-2526910.png' %}"
+            alt="Man"
+          />
+          <div class="box-text">
+            <div>
+              <h2>College Branding</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              </p>
             </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-        <div class="text-box">
-            <h2>Alcheringa 2022</h2>
-            <h1>Campus Ambassador</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu orci, scelerisque consequat aenean massa lobortis pretium.
+            <div>
+              <h2>City Eliminations</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              </p>
+            </div>
+            <div>
+              <h2>Increasing Reach</h2>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="join">
+          <div>
+            <img src="{% static 'home\img\perspaleta1_0008.png' %}" />
+            <h2 style="color: #ffffff">Complete Tasks</h2>
+            <p style="color: #ffffff">Platinum Certificate (Top 5 CAs)</p>
+          </div>
+          <div>
+            <img src="{% static 'home\img\perspaleta1_0031.png' %}" />
+            <h2 style="color: #ffffff">Share Posts</h2>
+            <p style="color: #ffffff">
+              Feel the pride and honor of being<br />the leader of champions
             </p>
-            <a href="#" class="hero-btn">Join Now</a>
+          </div>
+          <div>
+            <img src="{% static 'home\img\perspaleta1_0015.png' %}" />
+            <h2 style="color: #ffffff">Get Registrations</h2>
+            <p style="color: #ffffff">
+              Prizes worth 2.2 lakhs to be won<br />Certified Internships and
+              Workshops.
+            </p>
+          </div>
+          <div>
+            <img src="{% static 'home\img\perspaleta1_0037.png' %}" />
+            <h2 style="color: #ffffff">Suggest Ideas</h2>
+            <p style="color: #ffffff">
+              Prizes worth 2.2 lakhs to be won<br />Certified Internships and
+              Workshops.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section>
-        <div class="iframe-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/xSDlUEJ22vU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="video-text">
-            <p>Aftermovie, Alcheringa 2020</p>
-        </div>
-    </section>
-
-    <section>
+      <div>
+        <p class="joining">Past offers</p>
+      </div>
+      <div class="join">
         <div>
-            <p class="joining">Why should you join?</p>
+          <img src="{% static 'home/img/perspaleta1_0016.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>Platinum Certificate (Top 5 CAs)</p>
         </div>
-        <div class="join">
-            <div>
-                <img src="{% static 'home/img/perspaleta1_0016.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>Platinum Certificate (Top 5 CAs)</p>
-            </div>
-            <div>
-                <img src="{% static 'home\img\perspaleta1.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>Feel the pride and honor of being<br />the leader of champions</p>
-            </div>
-            <div>
-                <img src="{% static 'home\img\perspaleta1_0003.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>
-                    Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div id="blue">
-            <p id="res">What will be your responsibilities?</p>
-            <div id="man">
-                <img src="{% static 'home\img\marketing-campaign-3025712-2526910.png' %}" alt="Man" />
-                <div class="box-text">
-                    <div>
-                        <h2>College Branding</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        </p>
-                    </div>
-                    <div>
-                        <h2>City Eliminations</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        </p>
-                    </div>
-                    <div>
-                        <h2>Increasing Reach</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="join">
-                <div>
-                    <img src="{% static 'home\img\perspaleta1_0008.png' %}" />
-                    <h2 style="color: #ffffff">Complete Tasks</h2>
-                    <p style="color: #ffffff">Platinum Certificate (Top 5 CAs)</p>
-                </div>
-                <div>
-                    <img src="{% static 'home\img\perspaleta1_0031.png' %}" />
-                    <h2 style="color: #ffffff">Share Posts</h2>
-                    <p style="color: #ffffff">
-                        Feel the pride and honor of being<br />the leader of champions
-                    </p>
-                </div>
-                <div>
-                    <img src="{% static 'home\img\perspaleta1_0015.png' %}" />
-                    <h2 style="color: #ffffff">Get Registrations</h2>
-                    <p style="color: #ffffff">
-                        Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
-                    </p>
-                </div>
-                <div>
-                    <img src="{% static 'home\img\perspaleta1_0037.png' %}" />
-                    <h2 style="color: #ffffff">Suggest Ideas</h2>
-                    <p style="color: #ffffff">
-                        Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
         <div>
-            <p class="joining">Past offers</p>
+          <img src="{% static 'home\img\perspaleta1.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>Feel the pride and honor of being<br />the leader of champions</p>
         </div>
-        <div class="join">
-            <div>
-                <img src="{% static 'home/img/perspaleta1_0016.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>Platinum Certificate (Top 5 CAs)</p>
-            </div>
-            <div>
-                <img src="{% static 'home\img\perspaleta1.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>Feel the pride and honor of being<br />the leader of champions</p>
-            </div>
-            <div>
-                <img src="{% static 'home\img\perspaleta1_0003.png' %}" />
-                <h2>Level-wise Certification</h2>
-                <p>
-                    Prizes worth 2.2 lakhs to be won<br />Certified Internships and Workshops.
-                </p>
-            </div>
+        <div>
+          <img src="{% static 'home\img\perspaleta1_0003.png' %}" />
+          <h2>Level-wise Certification</h2>
+          <p>
+            Prizes worth 2.2 lakhs to be won<br />Certified Internships and
+            Workshops.
+          </p>
         </div>
+      </div>
     </section>
 
     <script>
-        var navLinks = document.getElementById("navLinks");
+      var navLinks = document.getElementById("navLinks");
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
 
-        function showMenu() {
-            navLinks.style.right = "0";
-        }
-
-        function hideMenu() {
-            navLinks.style.right = "-200px";
-        }
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
     </script>
     <script src="{% static 'home/main.js' %}"></script>
-</body>
-
+  </body>
 </html>
