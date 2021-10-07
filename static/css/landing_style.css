@@ -6,7 +6,7 @@
 
 .header {
     background: linear-gradient( 0deg, rgba(0, 17, 38, 0.22), rgba(0, 17, 38, 0.22)), url(/static/images/bg.png);
-    min-height: 100vh;
+    min-height: 37rem;
     width: 100%;
     background-size: cover;
     background-position: center;
@@ -109,6 +109,7 @@ nav img {
     background-color: blue;
 }
 .text-box {
+    margin-top: 2rem;
     width: 90%;
     left: 55%;
     top: 50%;
@@ -308,19 +309,21 @@ nav .fa {
         margin-left: 20%;
     }
     .text-box h2 {
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
         margin-left: -60%;
     }
     .text-box h1 {
-        font-size: 30px;
+        font-size: 20px;
         text-align: center;
         margin-left: -60%;
     }
     .text-box p {
+        font-size: 16px;
         text-align: center;
     }
     .text-box {
+        margin-top: 4rem;
         width: 90%;
         left: 40%;
         top: 50%;
