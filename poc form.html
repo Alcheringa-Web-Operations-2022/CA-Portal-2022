@@ -193,14 +193,28 @@
         </svg>
 
         <a href="#" class="items-centre font-medium text-2xl">Submissions</a>
-        <a href="#">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M26 24V24.4142L26.2929 24.7071L29 27.4142V27.5H7V27.4142L9.70711 24.7071L10 24.4142V24V16.5C10 12.2287 12.2294 8.88184 15.9806 7.99306L16.75 7.81075V7.02V6C16.75 5.30728 17.3073 4.75 18 4.75C18.6927 4.75 19.25 5.30728 19.25 6V7.02V7.81011L20.0187 7.99288C23.7562 8.88153 26 12.2446 26 16.5V24ZM19.7292 31C19.3814 31.5961 18.7344 32 18 32C17.2571 32 16.6124 31.5969 16.2674 31H19.7292Z"
-              stroke="#90A0B7" stroke-width="2" />
-            <circle cx="25.5" cy="9" r="6.5" fill="#FF4433" stroke="white" />
-          </svg>
-        </a>
+        <div>
+          <div>
+            <a href="#" class="font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button" onmouseenter="openPopover(event,'tooltip-example')"
+            onmouseleave="openPopover(event,'tooltip-example')">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M26 24V24.4142L26.2929 24.7071L29 27.4142V27.5H7V27.4142L9.70711 24.7071L10 24.4142V24V16.5C10 12.2287 12.2294 8.88184 15.9806 7.99306L16.75 7.81075V7.02V6C16.75 5.30728 17.3073 4.75 18 4.75C18.6927 4.75 19.25 5.30728 19.25 6V7.02V7.81011L20.0187 7.99288C23.7562 8.88153 26 12.2446 26 16.5V24ZM19.7292 31C19.3814 31.5961 18.7344 32 18 32C17.2571 32 16.6124 31.5969 16.2674 31H19.7292Z"
+                  stroke="#90A0B7" stroke-width="2" />
+                <circle cx="25.5" cy="9" r="6.5" fill="#FF4433" stroke="white" />
+              </svg>
+            </a>
+            <div class="hidden bg-white border-0 mb-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
+            id="tooltip-example">
+            <div>
+              <div class="bg-white text-gray opacity-75 p-3 mb-0 border border-solid rounded">
+                Notifications
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
       </nav>
       <br>
       <div class=" flex flex-wrap ">
@@ -255,6 +269,19 @@
   </div>
 
      
+  <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
+<script>
+  function openPopover(event, tooltipID) {
+    let element = event.target;
+    while (element.nodeName === "A") {
+      element = element.parentNode;
+    }
+    var popper = Popper.createPopper(element, document.getElementById(tooltipID), {
+      placement: 'top'
+    });
+    document.getElementById(tooltipID).classList.toggle("hidden");
+  }
+</script>
 </body>
 
 
