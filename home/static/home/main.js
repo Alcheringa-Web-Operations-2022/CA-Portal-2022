@@ -29,3 +29,14 @@ window.onscroll = function() {
         navbarbuttontext.classList.remove("scroll");
     }
 };
+
+
+document.querySelector("#navlink5").addEventListener("click", function() {
+    document.querySelector(".popup").classList.add("active");
+    $(".backdrop").fadeTo(200, 1);
+});
+
+document.querySelector(".popup .close-btn").addEventListener("click", function() {
+    document.querySelector(".popup").classList.remove("active");
+    $(".backdrop").fadOut(200);
+});

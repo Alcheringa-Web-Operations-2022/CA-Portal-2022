@@ -26,7 +26,7 @@
                     <li><a href="#" id="navlink2">Benefits</a></li>
                     <li><a href="#" id="navlink3">Responsibilities</a></li>
                     <li><a href="#" id="navlink4">FAQs</a></li>
-                    <li><a href="#" id="navlink5">Login</a></li>
+                    <li><a id="navlink5">Login</a></li>
                     <li id="join-button">
                         <a href="#" id="join-button-text">Join Now</a>
                     </li>
@@ -34,6 +34,12 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
+
+
+
+
+
+
         <div class="text-box">
             <h2>Alcheringa 2022</h2>
             <h1>Campus Ambassador</h1>
@@ -160,6 +166,32 @@
             </div>
         </div>
     </section>
+
+    <div class="backdrop">
+        <div id="modal" class="popup">
+            <span class="close-btn">&times;</span>
+            <form action="/action_page.php" method="GET" class="form">
+                <h2>Login</h2>
+                <div class="form-element">
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" name="email" id="email" placeholder="Enter Email" />
+                </div>
+                <div class="form-element">
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" name="password" id="password" placeholder="Enter password" />
+                </div>
+                <div class="form-element">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="form-element">
+                    <a href="#"><button>Login</button></a>
+                </div>
+                <div class="form-element">
+                    <p>Don't have an account yet?<a href="#">Register Now</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
         var navLinks = document.getElementById("navLinks");
