@@ -12,6 +12,7 @@
         
         body{
           font-family: 'Poppins';
+          background-color: #f8f8f8;
         }
 
         .sform{
@@ -19,10 +20,14 @@
             
         }
       
-.bell{
-    position:fixed;
-    top:1vw;
-    right:1vw;
+ input[type=text] {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+  input[type=textarea] {
+    outline: none;
 }
      #form_button{
          background-color: #109CF1;
@@ -223,7 +228,7 @@
     
     <div class="message m-5 my-8 text-m border-b-2 border-gray-300">
       <label for="message"></label>
-      <textarea name="message" placeholder="Tell us your idea" id="message_input" cols="35" rows="5" required></textarea>
+      <input type="textarea" name="message" placeholder="Tell us your idea" id="message_input" cols="35" rows="5" required></textarea>
     </div>
     
     
