@@ -1,0 +1,79 @@
+
+{% extends '../basicbootstrap.html'%}
+{% load static %}
+{%block title%}Register | Alcheringa {%endblock%}
+{% block style %}<link rel="stylesheet" href={% static "css/register_login.css" %}>{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+<nav class="navbar navbar-light pb-5">
+	<div class="container-fluid">
+		<a class="navbar-brand ms-5" href="/">
+			<img src="{% static 'images/Logo.png' %}" alt="" width="auto" height="28" class="d-inline-block align-text-top">
+		</a>
+	</div>
+</nav>
+<div class="row">
+	<div class="col form-div">
+		<div class="container form-wrapper">
+			<h2>REGISTRATION</h2>
+			<div class="form">
+				<div class="form-head my-2 mb-4">
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="{% url 'register_single' %}" type="button" class="register-top" style="text-decoration: none;font-weight: 500;color:rgb(95, 133, 248)">SOLO
+								REGISTRATION</a>
+						</div>
+						<div class="col-sm-6">
+							<a href="{% url 'register_group' %}" type="button" class="register-top" style="text-decoration: none;font-weight: 500;color:rgb(141, 141, 141)">TEAM
+								REGISTRATION</a>
+						</div>
+					</div>
+				</div>
+				<form method="POST">
+            		{% csrf_token %}
+					<ul class="errorlist">
+						{% if single_user_register_form.non_field_errors %}
+						<li>{{  single_user_register_form.non_field_errors }}</li>
+						{% endif %}
+						{% for field in single_user_register_form %}
+						{% if field.errors %}
+							<ul class="errorlist">
+								{% for error in field.errors %}
+									{{ error }}
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					<p class="my-1">Feild marked * are mandatory</p>
+					
+
+					{{ single_user_register_form.firstname }}
+					{{ single_user_register_form.email }}
+					{{ single_user_register_form.phone }}
+					{{ single_user_register_form.graduation_year }}
+					{{ single_user_register_form.college_state }}
+					{{ single_user_register_form.college_city }}
+					{{ single_user_register_form.college_name }}
+					{{ single_user_register_form.position_of_responsibility }}
+					{{ single_user_register_form.interested_modules }}
+					{{ single_user_register_form.referred_by }}
+
+					{{ single_user_register_form.password1 }}
+					{{ single_user_register_form.password2 }}
+				
+					<input type="submit" class="bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base"/>
+				</form>
+				Registered already? <a id="navlink5" style="cursor:pointer; color:#109cf1;">Login</a>
+				<br /><br />
+			</div>
+             
+		</div>
+	</div>
+	<div class="col img-div">
+		<img src="{% static 'images/Graphic.jpg' %}" alt="">
+	</div>
+</div>
+<br/><br/><br/>
+{% include 'users/login.html' %}
+{% endblock %}

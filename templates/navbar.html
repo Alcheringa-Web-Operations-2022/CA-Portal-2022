@@ -1,0 +1,180 @@
+<!-- bottom_nav-upto_small_screens -->
+<nav class="grid grid-flow-col grid-cols-5 bg-white shadow border-t-2 w-full fixed bottom-0 sm:hidden">
+    <!-- dashboard -->
+    <a href="{% url 'dashboard_page' %}">
+        <div class="py-6 pl-8 rounded-full">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M6.08 8.08H1.92V1.92H6.08V8.08ZM6.08 16.08V13.92H1.92V16.08H6.08ZM16.08 16.08V9.92H11.92V16.08H16.08ZM11.92 4.08H16.08V1.92H11.92V4.08ZM0.8 10C0.358172 10 0 9.64183 0 9.2V0.8C0 0.358172 0.358172 0 0.8 0H7.2C7.64183 0 8 0.358172 8 0.8V9.2C8 9.64183 7.64183 10 7.2 10H0.8ZM0.8 18C0.358172 18 0 17.6418 0 17.2V12.8C0 12.3582 0.358172 12 0.8 12H7.2C7.64183 12 8 12.3582 8 12.8V17.2C8 17.6418 7.64183 18 7.2 18H0.8ZM10.8 18C10.3582 18 10 17.6418 10 17.2V8.8C10 8.35817 10.3582 8 10.8 8H17.2C17.6418 8 18 8.35817 18 8.8V17.2C18 17.6418 17.6418 18 17.2 18H10.8ZM10 0.8C10 0.358172 10.3582 0 10.8 0H17.2C17.6418 0 18 0.358172 18 0.8V5.2C18 5.64183 17.6418 6 17.2 6H10.8C10.3582 6 10 5.64183 10 5.2V0.8Z"
+                    fill="#109CF1" />
+            </svg>
+        </div>
+    </a>
+    <!-- tasks -->
+    <a href="{% url 'tasks' %}">
+        <div class="py-6 pl-8 rounded-full">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M4.67 4.92V9.08H19.83V4.92H4.67ZM4.67 14.92V19.08H19.83V14.92H4.67ZM3.75 3H20.75C21.3 3 21.75 3.45 21.75 4V10C21.75 10.55 21.3 11 20.75 11H3.75C3.2 11 2.75 10.55 2.75 10V4C2.75 3.45 3.2 3 3.75 3ZM3.75 13H20.75C21.3 13 21.75 13.45 21.75 14V20C21.75 20.55 21.3 21 20.75 21H3.75C3.2 21 2.75 20.55 2.75 20V14C2.75 13.45 3.2 13 3.75 13Z"
+                    fill="#C2CFE0" />
+            </svg>
+        </div>
+    </a>
+    <!-- Group c put POC url here like profile uurl is added -->
+    <a href="{% url 'submissionhome' %}">
+        <div class="py-6 pl-8 rounded-full">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.8623 2.28247C12.226 1.95915 12.7741 1.95915 13.1378 2.28247L19.1378 7.6158C19.5341 7.96804 19.5698 8.57483 19.2176 8.9711C18.8653 9.36737 18.2585 9.40307 17.8623 9.05082L13.4601 5.13775V17C13.4601 17.5302 13.0302 17.96 12.5001 17.96C11.9699 17.96 11.5401 17.5302 11.5401 17V5.13775L7.13784 9.05082C6.74157 9.40307 6.13478 9.36737 5.78254 8.9711C5.4303 8.57483 5.46599 7.96804 5.86226 7.6158L11.8623 2.28247Z"
+                    fill="#C2CFE0" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.50004 16.04C3.03023 16.04 3.46004 16.4698 3.46004 17V20.04H21.54V17C21.54 16.4698 21.9698 16.04 22.5 16.04C23.0302 16.04 23.46 16.4698 23.46 17V21C23.46 21.5302 23.0302 21.96 22.5 21.96H2.50004C1.96985 21.96 1.54004 21.5302 1.54004 21V17C1.54004 16.4698 1.96985 16.04 2.50004 16.04Z"
+                    fill="#C2CFE0" />
+            </svg>
+        </div>
+    </a>
+    <!-- profile -->
+    <a href="{% url 'profile' %}">
+        <div class="py-6 pl-8 rounded-full">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9.71624 13.4154C6.59929 13.9689 2.9165 15.4451 2.9165 17.8333V21.3333H21.5832V17.8333C21.5832 15.4451 17.9004 13.9689 14.7834 13.4154C13.8502 13.2497 12.9676 13.1667 12.2498 13.1667C11.5321 13.1667 10.6495 13.2497 9.71624 13.4154ZM10.0023 11.4245C10.6689 11.7913 11.4349 12 12.2498 12C13.0648 12 13.8308 11.7913 14.4974 11.4245C15.9397 10.6309 16.9165 9.09669 16.9165 7.33332C16.9165 4.75499 14.8282 2.66666 12.2498 2.66666C9.6715 2.66666 7.58317 4.75499 7.58317 7.33332C7.58317 9.09669 8.55997 10.6309 10.0023 11.4245ZM19.6632 19.4133V17.8333C19.6632 17.7627 19.643 17.5587 19.2607 17.2059C18.8653 16.8409 18.2254 16.461 17.3706 16.1185C15.6579 15.4324 13.5673 15.0867 12.2498 15.0867C10.9324 15.0867 8.84173 15.4324 7.12904 16.1185C6.27424 16.461 5.63437 16.8409 5.23899 17.2059C4.85665 17.5587 4.8365 17.7627 4.8365 17.8333V19.4133H19.6632ZM12.2498 4.58666C10.7319 4.58666 9.50317 5.81538 9.50317 7.33332C9.50317 8.85127 10.7319 10.08 12.2498 10.08C13.7678 10.08 14.9965 8.85127 14.9965 7.33332C14.9965 5.81538 13.7678 4.58666 12.2498 4.58666Z"
+                    fill="#C2CFE0" />
+            </svg>
+
+        </div>
+    </a>
+    <a href="">
+        <div class="py-6 pl-8 rounded-full">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6 10C4.9 10 4 10.9 4 12C4 13.1 4.9 14 6 14C7.1 14 8 13.1 8 12C8 10.9 7.1 10 6 10ZM18 10C16.9 10 16 10.9 16 12C16 13.1 16.9 14 18 14C19.1 14 20 13.1 20 12C20 10.9 19.1 10 18 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                    fill="#C2CFE0" />
+            </svg>
+        </div>
+    </a>
+</nav>
+
+
+
+<!-- left_nav-small_screens -->
+<nav class="hidden sm:block bg-white h-screen w-80 border-gray-400 rounded">
+    <div class="flex flex-col justify-center bg-white w-80 border-gray-400 rounded shadow-md px-12">
+        <a href="/"><img src="https://i.ibb.co/28C2v0b/image.png" class="mt-6 mx-auto pb-3 border-b" width="150px"
+                height="40px" alt="logo" border="0" /></a>
+        <div class="flex flex-col justify-center my-7">
+            <img src="{{request.user.img.url}}" width="90px" alt="profile pic" border="0"
+                class="mx-auto rounded-full" />
+            <div class="pt-4 font-medium text-xl text-center">{{request.user.firstname}}</div>
+            <div class="text-gray-500 text-base font-normal text-center">{{request.user.email}}</div>
+        </div>
+        <div class="elements pt-2 mt-2 mb-28 flex flex-col justify-center">
+            <a href="{% url 'dashboard_page' %}"
+                class="rounded-full flex flex-nowrap py-4 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.35 11.85H2.15V2.15H9.35V11.85ZM9.35 21.85H2.15V17.15H9.35V21.85ZM21.85 21.85H14.65V12.15H21.85V21.85ZM14.65 6.85V2.15H21.85V6.85H14.65Z"
+                        stroke="#109CF1" stroke-width="2.8" />
+                </svg>
+                <p class="pl-4 hover:no-underline">Dashboard</p>
+            </a>
+            <!-- tasks -->
+            <a href="{% url 'tasks' %}"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.9 9.35V2.15H22.85V9.35H1.9ZM1.9 21.85V14.65H22.85V21.85H1.9Z" stroke="#C2CFE0"
+                        stroke-width="2.8" />
+                </svg>
+                <p class="pl-4 no-underline">Tasks</p>
+            </a>
+
+            <!-- Group c put POC url here like profile uurl is added -->
+            <a href="{% url 'submissionhome' %}"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg class="" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 3.75L22.5 10.4167M15 3.75L7.5 10.4167M15 3.75V21.25" stroke="#C2CFE0"
+                        stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M27.5 21.25V26.25H2.5V21.25" stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <p class="pl-3 no-underline">Submissions</p>
+            </a>
+            <!-- profile -->
+            <a href="{% url 'profile' %}"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                style="cursor:pointer;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M7.56665 6.16663C7.56665 3.71691 9.55026 1.7333 12 1.7333C14.4497 1.7333 16.4333 3.71691 16.4333 6.16663C16.4333 8.61635 14.4497 10.6 12 10.6C9.55026 10.6 7.56665 8.61635 7.56665 6.16663ZM1.73331 19.2916C1.73331 18.836 1.95042 18.3334 2.55819 17.7724C3.17547 17.2027 4.09758 16.6724 5.22711 16.2199C7.48842 15.314 10.2281 14.8583 12 14.8583C13.7718 14.8583 16.5115 15.314 18.7728 16.2199C19.9024 16.6724 20.8245 17.2027 21.4418 17.7724C22.0495 18.3334 22.2666 18.836 22.2666 19.2916V22.2666H1.73331V19.2916Z"
+                        stroke="#C2CFE0" stroke-width="2.8" />
+                </svg>
+                <p class="pl-4 no-underline">Profile</p>
+            </a>
+            <hr class="border bg-gray-200" />
+            <a href=""
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline mt-3">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15 3.9C16.4577 3.9 17.9011 4.18711 19.2478 4.74494C20.5945 5.30276 21.8182 6.12038 22.8489 7.15112C23.8796 8.18185 24.6972 9.4055 25.2551 10.7522C25.8129 12.0989 26.1 13.5423 26.1 15C26.1 16.4577 25.8129 17.9011 25.2551 19.2478C24.6972 20.5945 23.8796 21.8182 22.8489 22.8489C21.8182 23.8796 20.5945 24.6972 19.2478 25.2551C17.9011 25.8129 16.4577 26.1 15 26.1C13.5423 26.1 12.0989 25.8129 10.7522 25.2551C9.4055 24.6972 8.18184 23.8796 7.15111 22.8489C6.12038 21.8182 5.30276 20.5945 4.74494 19.2478C4.18711 17.9011 3.9 16.4577 3.9 15C3.9 13.5423 4.18711 12.0989 4.74494 10.7522C5.30277 9.40549 6.12039 8.18184 7.15112 7.15111C8.18185 6.12038 9.40551 5.30276 10.7522 4.74493C12.0989 4.18711 13.5423 3.9 15 3.9L15 3.9Z"
+                        stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round" />
+                    <line x1="13.9" y1="13.9" x2="13.9" y2="19.85" stroke="#C2CFE0" stroke-width="2.8"
+                        stroke-linecap="round" />
+                    <circle cx="14.25" cy="9.25" r="1.75" fill="#C2CFE0" />
+                </svg>
+                <p class="pl-3 no-underline">Guidelines</p>
+            </a>
+            <a href=""
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13 1.9C15.1954 1.9 17.3414 2.551 19.1668 3.77069C20.9922 4.99037 22.4149 6.72395 23.2551 8.75221C24.0952 10.7805 24.315 13.0123 23.8867 15.1655C23.4584 17.3187 22.4012 19.2965 20.8489 20.8489C19.2965 22.4012 17.3187 23.4584 15.1655 23.8867C13.0123 24.315 10.7805 24.0952 8.75221 23.2551C6.72395 22.4149 4.99037 20.9922 3.77069 19.1668C2.551 17.3414 1.9 15.1954 1.9 13"
+                        stroke="#C2CFE0" stroke-width="2.8" stroke-linecap="round" />
+                </svg>
+                <p class="pl-4 no-underline">Point System</p>
+            </a>
+            <a href=""
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1.4149 3.00001V3.00079L1.40178 26.6183L5.00997 23.0101L5.42002 22.6001H5.99992H27C27.8768 22.6001 28.6 21.8769 28.6 21.0001V3.00001C28.6 2.1232 27.8768 1.4 27 1.4H2.99991C2.13222 1.4 1.4149 2.11405 1.4149 3.00001Z"
+                        stroke="#C2CFE0" stroke-width="2.8" />
+                </svg>
+                <p class="pl-4 no-underline">Contact Us</p>
+            </a>
+            <a href="{% url 'logout' %}"
+                class="side rounded-full flex flex-nowrap py-4 pl-6 w-60 hover:border-0 hover:bg-gray-100 hover:no-underline">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M2.8531 15.7972C2.44895 15.3425 2.44895 14.6574 2.8531 14.2027L9.51976 6.7027C9.96006 6.20736 10.7186 6.16275 11.2139 6.60305C11.7092 7.04335 11.7538 7.80183 11.3135 8.29717L6.4222 13.7999L21.25 13.7999C21.9127 13.7999 22.45 14.3372 22.45 14.9999C22.45 15.6627 21.9127 16.1999 21.25 16.1999L6.4222 16.1999L11.3135 21.7027C11.7538 22.198 11.7092 22.9565 11.2139 23.3968C10.7186 23.8371 9.96006 23.7925 9.51976 23.2972L2.8531 15.7972Z"
+                        fill="#C2CFE0" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M20.05 27.5C20.05 26.8372 20.5872 26.3 21.25 26.3L25.05 26.3L25.05 3.69995L21.25 3.69995C20.5872 3.69995 20.05 3.16269 20.05 2.49995C20.05 1.83721 20.5872 1.29995 21.25 1.29995L26.25 1.29995C26.9127 1.29995 27.45 1.83721 27.45 2.49995L27.45 27.5C27.45 28.1627 26.9127 28.7 26.25 28.7L21.25 28.7C20.5872 28.7 20.05 28.1627 20.05 27.5Z"
+                        fill="#C2CFE0" />
+                </svg>
+                <p class="pl-4 no-underline">Logout</p>
+            </a>
+            {% if request.user.is_staff %}
+
+            <a href="/admin"
+                class="rounded-full flex flex-nowrap py-4 w-60 pl-6 hover:border-0 hover:bg-gray-100 mb-3 hover:no-underline"
+                style="cursor:pointer;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M7.56665 6.16663C7.56665 3.71691 9.55026 1.7333 12 1.7333C14.4497 1.7333 16.4333 3.71691 16.4333 6.16663C16.4333 8.61635 14.4497 10.6 12 10.6C9.55026 10.6 7.56665 8.61635 7.56665 6.16663ZM1.73331 19.2916C1.73331 18.836 1.95042 18.3334 2.55819 17.7724C3.17547 17.2027 4.09758 16.6724 5.22711 16.2199C7.48842 15.314 10.2281 14.8583 12 14.8583C13.7718 14.8583 16.5115 15.314 18.7728 16.2199C19.9024 16.6724 20.8245 17.2027 21.4418 17.7724C22.0495 18.3334 22.2666 18.836 22.2666 19.2916V22.2666H1.73331V19.2916Z"
+                        stroke="#C2CFE0" stroke-width="2.8" />
+                </svg>
+                <p class="pl-4 no-underline">Admin</p>
+            </a>
+            {%endif%}
+        </div>
+    </div>
+</nav>
+<div class="mx-4" x-data="{ dropdownOpen: false }">
+    <!-- top_nav-all_screens -->
+    <nav class=" px-6 py-5 flex justify-between bg-white sm:bg-none -mx-4 mx-0">
+        <a href="/" class=" block sm:hidden">
+            <img src="https://i.ibb.co/jhNQdns/image.png" width="38px" alt="profile pic" border="0" />
+        </a>
+        <a href="/" class=" font-medium text-2xl ">{{ heading }}</a>
+        {%include 'navbarnotifications.html'%}
+    </nav>

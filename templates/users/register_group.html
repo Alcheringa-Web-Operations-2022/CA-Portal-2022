@@ -1,0 +1,125 @@
+{% extends '../basicbootstrap.html'%}
+{% load static %}
+{%block title%}Register | Alcheringa{%endblock%}
+{% block style %}
+<link rel="stylesheet" href={% static "css/register_login.css" %}>{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+<nav class="navbar navbar-light pb-5">
+	<div class="container-fluid">
+		<a class="navbar-brand ms-5" href="/">
+			<img src="{% static 'images/Logo.png' %}" alt="" width="auto" height="28"
+				class="d-inline-block align-text-top">
+		</a>
+	</div>
+</nav>
+<div class="row">
+	<div class="col form-div">
+		<div class="container form-wrapper">
+			<h2>REGISTRATION</h2>
+			<div class="form">
+				<div class="form-head my-2 mb-4">
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="{% url 'register_single' %}" type="button" class="register-top"
+							style="text-decoration: none;font-weight: 500;color:rgb(141, 141, 141)">SOLO
+								REGISTRATION</a>
+						</div>
+						<div class="col-sm-6">
+							<a href="{% url 'register_group' %}" type="button" class="register-top" style="text-decoration: none;font-weight: 500;color:rgb(95, 133, 248)">TEAM
+								REGISTRATION</a>
+						</div>
+					</div>
+				</div>
+				<form method="POST">
+					{% csrf_token %}
+					<h3>Team Leader</h3>
+					<ul class="errorlist">
+						{% if single_user_register_form_1.non_field_errors %}
+						<li>{{ single_user_register_form_1.non_field_errors }}</li>
+						{% endif %}
+						{% for field in single_user_register_form_1 %}
+						{% if field.errors %}
+							<ul class="errorlist">
+								{% for error in field.errors %}
+								{{ error }}
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					<p class="my-1">Feild marked * are mandatory</p>
+
+                    
+					{{ single_user_register_form_1.firstname }}
+					{{ single_user_register_form_1.email }}
+					{{ single_user_register_form_1.phone }}
+					{{ single_user_register_form_1.graduation_year }}
+					<!-- {{ single_user_register_form.college_state }}
+					{{ single_user_register_form.college_city }}
+					{{ single_user_register_form.college_name }} -->
+					{{ single_user_register_form_1.position_of_responsibility }}
+					{{ single_user_register_form_1.interested_modules }}
+
+					<h3>Team Executive</h3>
+					<ul class="errorlist">
+						{% if single_user_register_form_2.non_field_errors %}
+						<li>{{ single_user_register_form_2.non_field_errors }}</li>
+						{% endif %}
+						{% for field in single_user_register_form_2 %}
+						{% if field.errors %}
+							<ul class="errorlist">
+								{% for error in field.errors %}
+								{{ error }}
+								{% endfor %}
+							</ul>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					{{ single_user_register_form_2.firstname }}
+					{{ single_user_register_form_2.email }}
+					{{ single_user_register_form_2.phone }}
+					{{ single_user_register_form_2.graduation_year }}
+					
+					{{ single_user_register_form_2.position_of_responsibility }}
+					{{ single_user_register_form_2.interested_modules }}
+
+					<h3>Other Fields</h3>
+					<ul class="errorlist">
+						{% if group_user_register_form.non_field_errors %}
+						<li>{{ group_user_register_form.non_field_errors }}</li>
+						{% endif %}
+						{% for field in group_user_register_form %}
+						{% if field.errors %}
+						<ul class="errorlist">
+							{% for error in field.errors %}
+							{{ error }}
+							{% endfor %}
+						</ul>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					{{ group_user_register_form.college_state }}
+					{{ group_user_register_form.college_city }}
+					{{ group_user_register_form.college_name }}
+					{{ group_user_register_form.referred_by }}
+					<input type="password" name="password1" class="input_field" placeholder="Set Password *" required
+						id="id_password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+					<input type="submit"
+						class="bg-blue-600 hover:bg-blue-700 text-white inline-block py-2 px-4 rounded shadow-sm font-semibold text-base" />
+				</form>
+				Registered already? <a id="navlink5" style="cursor:pointer; color:#109cf1;">Login</a>
+                <br/><br/>
+			</div>
+			
+		</div>
+	</div>
+	<div class="col img-div">
+		<img src="{% static 'images/Graphic.jpg' %}" alt="">
+	</div>
+</div>
+<br /><br /><br />
+{% include 'users/login.html' %}
+{% endblock %}
+
