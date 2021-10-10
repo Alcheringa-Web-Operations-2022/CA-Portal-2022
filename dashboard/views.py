@@ -46,7 +46,7 @@ def verify_like(request):
         user_name = 'fun_tas_tic_12'
         password = 'Qwerty@123'
         api = Client(user_name, password)
-        results = api.media_likers_chrono('2636572187229882088_1537399767')
+        results = api.media_likers_chrono(post.media_id)
         items = results['users']
         flag=0
         for item in items: 
