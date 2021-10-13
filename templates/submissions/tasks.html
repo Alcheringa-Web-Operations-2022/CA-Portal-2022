@@ -5,7 +5,7 @@
     <div class="bg-blue-50 flex">
         {% include "../navbar.html" %}
             <div class="flex">
-                <div>
+                <div class="flex-grow">
                     <!-- tasks -->
                     {% include "dashboard/components/tasks.html" %}
                 </div>
@@ -22,13 +22,7 @@
     const arrow = document.querySelector(".side");
     const middle = document.querySelector(".Middle");
     // const alcher = document.querySelector(".Alcher");
-    const ak = document.querySelector(".ak");
 
-    if (screen.width < 672) {
-        alert('Less than 960');
-        ak.classList.add("hidden")
-
-    }
 
     // alcher.addEventListener("click", () => {
     //     sidebar.classList.toggle("-translate-x-full"),

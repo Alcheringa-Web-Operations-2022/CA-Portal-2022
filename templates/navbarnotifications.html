@@ -10,32 +10,32 @@
 
 <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-<div x-show="dropdownOpen" class="absolute right-0 mt-2 bg-white rounded-md shadow-lg overflow-hidden z-20"
+<div x-show="dropdownOpen" class="absolute right-0 bg-white rounded-md shadow-lg overflow-y-scroll max-h-96 z-20 mx-5"
     style="width:20rem;" id="dropdown" style="display:none;">
     {% for notification in notification_list %}
     {% if notification.type == 'Info' %}
-    <div class="py-2">
-        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+    <div>
+        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100">
             <i class="fas fa-exclamation h-8 w-8 rounded-full object-cover circleicon"></i>
-            <p class="text-gray-600 text-sm mx-2">
+            <p class="text-gray-600 text-sm mx-1">
                 <span class="font-bold" href="#">{{notification.message}}</span>
             </p>
         </a>
     </div>
     {% elif notification.type == 'Success' %}
-    <div class="py-2">
-        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+    <div>
+        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100">
             <i class="fas fa-check h-8 w-8 rounded-full object-cover circleicon"></i>
-            <p class="text-gray-600 text-sm mx-2">
+            <p class="text-gray-600 text-sm mx-1">
                 <span class="font-bold" href="#">{{notification.message}}</span>
             </p>
         </a>
     </div>
     {% elif notification.type == 'Warning' %}
-    <div class="py-2">
-        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+    <div>
+        <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100">
             <i class="fas fa-exclamation-triangle h-8 w-8 rounded-full object-cover circleicon"></i>
-            <p class="text-gray-600 text-sm mx-2">
+            <p class="text-gray-600 text-sm mx-1">
                 <span class="font-bold" href="#">{{notification.message}}</span>
             </p>
         </a>
@@ -44,14 +44,14 @@
     {% endfor %}
     {% if not notification_list %}
     <div class="py-2">
-        <a  class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+        <a  class="flex items-center px-4 py-3 border-b hover:bg-gray-100">
             <p class="text-gray-600 text-sm mx-2">
                 <span class="font-bold" href="#">No notifications 🔔</span>
             </p>
         </a>
     </div>
     {% endif %}
-    <a href="#" class="block bg-blue-700 text-white text-center font-bold py-2">See all notifications</a>
+    <!-- <a href="#" class="block bg-blue-700 text-white text-center font-bold py-2">See all notifications</a> -->
 </div>
 <!-- <script>
     $(document).ready(function () {

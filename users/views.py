@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+from dashboard.models import Notifications
 from .forms import SingleUserRegisterForm, GroupUserRegisterForm, GroupUserRegisterFormForSingle, UserUpdateForm
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
@@ -265,8 +267,14 @@ def profile(request):
         print(u_form.errors)
     else:
         u_form = UserUpdateForm(instance=request.user)
-    return render(request, 'users/profile.html', {'heading': 'Profile', 'u_form': u_form})
+        notification_list = Notifications.objects.filter(
+            Q(user=request.user) | Q(user=None)).order_by('-created_on')
+    return render(request, 'users/profile.html', {'heading': 'Profile', 'u_form': u_form, 'notification_list': notification_list})
 
+    def logout_request(request):
+        logout(request)
+        messages.info(request, "Logged out successfully!")
+        return redirect("dashboard/landing_pae.html")
 
 def password_reset_request(request):
     User = get_user_model()

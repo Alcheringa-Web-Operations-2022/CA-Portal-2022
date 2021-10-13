@@ -29,7 +29,7 @@ class POC(Submission):
     @property
     def points(self):
         if self.is_verified:
-            return 25
+            return 30
         else:
             return 0
     
@@ -40,7 +40,7 @@ class POCBulk(Submission):
     @property
     def points(self):
         if self.is_verified:
-            return 25*self.correct_poc
+            return 30*self.correct_poc
         else:
             return 0
 
@@ -51,7 +51,7 @@ class Idea(Submission):
     @property
     def points(self):
         if self.is_verified:
-            return 50
+            return 20
         else:
             return 0
 

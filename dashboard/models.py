@@ -1,9 +1,8 @@
 
+
 from django.db import models
 import uuid
 from django.utils import timezone
-from django.contrib.auth import get_user_model
-User = get_user_model()
 # Create your models here.
 
 
@@ -18,11 +17,10 @@ class ShareablePost(models.Model):
     caption = models.CharField(max_length=160)
     created_on = models.DateTimeField(default=timezone.now)
     last_date = models.DateTimeField(default=timezone.now)
-    likedusers = models.TextField(default = '')
+    likedusers = models.TextField(default = '', null=True,blank=True)
 
     def __str__(self):
         return str(self.id)
-
 
 
 class Notifications(models.Model):

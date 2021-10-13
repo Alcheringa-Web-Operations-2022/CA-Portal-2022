@@ -41,7 +41,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     id = models.SlugField(primary_key=True, default=uuid.uuid4)
     alcherid = models.CharField(
         max_length=9, blank=True, unique=True, default=create_new_ref_number)
-    
+
     img = models.ImageField(
         upload_to="image-uploads/", default='image-uploads/user.png')
     email = models.EmailField(_('email address'), unique=True)
@@ -70,9 +70,9 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     objects = CustomAccountManager()
-    points = models.IntegerField(default=0)
+    points = models.IntegerField(default=50)
     tasks = models.IntegerField(default=0)
-    instahandle = models.CharField(max_length=200, unique=True, default="")
+    instahandle = models.CharField(max_length=200, unique=False, default="")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['firstname']
@@ -129,6 +129,7 @@ class UserGroup(models.Model):
     college_state = models.CharField(max_length=200, unique=False)
     college_city = models.CharField(max_length=200, unique=False)
     college_name = models.CharField(max_length=200, unique=False)
+    
 
     referred_by = models.CharField(
         max_length=9, blank=True)

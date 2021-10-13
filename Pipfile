@@ -10,7 +10,7 @@ django-phonenumber-field = "*"
 phonenumbers = "*"
 six = "*"
 pillow = "*"
-
+django-mathfilters = "*"
 [dev-packages]
 
 [requires]
